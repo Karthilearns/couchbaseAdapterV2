@@ -22,12 +22,12 @@ public class CouchBaseApp implements IApp
     }
 
     @Override
-    public void start(AdapterProperties readerProperties , AdapterProperties writerProperties) {
+    public void start(AdapterProperties readerProperties , AdapterProperties writerProperties) throws InterruptedException {
 
         reader.initialize(readerProperties);
         writer.initialize(writerProperties);
         Event<Object> event = reader.read();
-
+        events.put(event);
 
     }
 }

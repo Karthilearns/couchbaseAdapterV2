@@ -5,8 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Driver {
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws InterruptedException {
         // getting input starts here
         Scanner scanner = new Scanner(System.in);
 
@@ -26,8 +25,6 @@ public class Driver {
 
 
         IApp app = AppStrategyStorage.getApp(sourceDatabaseName.toLowerCase(Locale.ROOT));
-        System.out.println(writer.equals(null));
-        System.out.println(adapterProperties.get("targetAdapterProperties"));
         app.addWriter(writer);
         app.addReader(reader);
         app.start(adapterProperties.get("sourceAdapterProperties"),adapterProperties.get("targetAdapterProperties"));

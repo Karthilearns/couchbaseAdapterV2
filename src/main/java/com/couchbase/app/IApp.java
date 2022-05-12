@@ -6,6 +6,6 @@ public interface IApp {
 
     void addWriter(IWriter writer);
 
-    void start(AdapterProperties source, AdapterProperties target);
+    void start(AdapterProperties source, AdapterProperties target) throws InterruptedException;
 
 }
