@@ -3,8 +3,8 @@ package com.couchbase.app;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class CouchBaseApp implements IApp{
-
+public class CouchBaseApp implements IApp
+{
     IReader reader;
     IWriter writer;
     BlockingQueue<Event<Object>> events = new ArrayBlockingQueue<>(10);
@@ -26,9 +26,10 @@ public class CouchBaseApp implements IApp{
 
         reader.initialize(readerProperties);
         writer.initialize(writerProperties);
+        Event<Object> event = reader.read();
 
 
     }
-
-
 }
+
+

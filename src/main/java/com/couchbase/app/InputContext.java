@@ -1,5 +1,7 @@
 package com.couchbase.app;
 
+import java.util.Hashtable;
+
 public class InputContext {
     private InputStrategy strategyReference;
 
@@ -8,9 +10,9 @@ public class InputContext {
         this.strategyReference = inputStrategy;
     }
 
-    public AdapterProperties invoke()
+    public Hashtable<String, AdapterProperties> invoke()
     {
-        AdapterProperties adapterProperties = strategyReference.execute();
+        Hashtable<String, AdapterProperties> adapterProperties = strategyReference.execute();
         return  adapterProperties;
     }
 

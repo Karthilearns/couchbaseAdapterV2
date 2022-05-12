@@ -4,6 +4,11 @@ public class Event<T> {
     T record;
     String metaData;
 
+    public Event(T record, String metaData) {
+        this.record = record;
+        this.metaData = metaData;
+    }
+
     public T getRecord() {
         return record;
     }
@@ -18,5 +23,13 @@ public class Event<T> {
 
     public void setMetaData(String metaData) {
         this.metaData = metaData;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "record=" + record +
+                ", metaData='" + metaData + '\'' +
+                '}';
     }
 }
