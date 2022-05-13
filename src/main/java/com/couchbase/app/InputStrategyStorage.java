@@ -8,6 +8,7 @@ public class InputStrategyStorage {
     static
     {
         strategies.put(1,new InitialLoadStrategy());
+
     }
     public static void addStrategy(InputStrategy inputStrategy)
     {

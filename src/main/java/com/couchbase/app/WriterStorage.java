@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class WriterStorage {
     static  HashMap<String,IWriter> writers = new HashMap<>();
     static {
-        writers.put("couchbase",new CouchBaseWriter());
+        writers.put("couchbaseIL",new CouchBaseWriter());
+        writers.put("couchbaseCDC",new CouchBaseCDCWriter());
     }
 
     public static IWriter getWriter(String databaseName)

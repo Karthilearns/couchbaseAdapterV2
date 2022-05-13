@@ -6,7 +6,8 @@ public class ReaderStorage {
     static HashMap<String , IReader> readers = new HashMap<>();
 
     static {
-        readers.put("couchbase",new CouchBaseReader());
+        readers.put("couchbaseIL",new CouchBaseReader());
+        readers.put("couchbaseCDC",new CouchCDCReader());
     }
 
     public static IReader getReader(String databaseName)

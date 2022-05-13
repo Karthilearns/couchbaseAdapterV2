@@ -12,8 +12,10 @@ public class CouchBaseReader implements IReader{
     Cluster cluster;
     Bucket bucket;
     static int cursor =0;
+
     @Override
-    public void initialize(AdapterProperties properties) {
+    public void initialize(AdapterProperties properties)
+    {
         cluster = Cluster.connect(properties.getProperty("hosturl"),properties.getProperty("username"),properties.getProperty("password"));
         bucket = cluster.bucket(properties.getProperty("bucketname"));
     }
@@ -28,9 +30,15 @@ public class CouchBaseReader implements IReader{
 //          Event<Object> event = new Event<Object>(jsonObject.get("record"),jsonObject.get("meta").toString());
 //          System.out.println(event);
 //      }
-        JsonObject jsonObject = queryResultList.get(cursor++);
-        Event<Object> event = new Event<>(jsonObject.get("record"),jsonObject.get("meta").toString());
-        return event;
+        if(cursor<queryResultList.size()) {
+            JsonObject jsonObject = queryResultList.get(cursor++);
+            Event<Object> event = new Event<>(jsonObject.get("record"), jsonObject.get("meta").toString());
+            return event;
+        }
+        else {
+            Thread.currentThread().stop();
+        }
+        return null;
     }
 
 

@@ -7,7 +7,8 @@ public class AppStrategyStorage {
 
     static
     {
-        apps.put("couchbase",new CouchBaseApp());
+        apps.put("couchbasecdc",new CouchBaseApp());
+        apps.put("couchbaseil",new CouchBaseApp());
     }
 
     public static void addApp(String dbName , IApp app)
