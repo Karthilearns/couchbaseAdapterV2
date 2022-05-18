@@ -1,9 +1,9 @@
 package com.couchbase.app;
 
 public class AppContext {
-    private IApp appReference;
+    private App appReference;
 
-    public void addReference(IApp app)
+    public void addReference(App app)
     {
         appReference = app;
     }

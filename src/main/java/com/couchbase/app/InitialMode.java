@@ -2,12 +2,13 @@ package com.couchbase.app;
 
 public class InitialMode implements Mode{
 
-    CouchBaseApp couchBaseApp = new CouchBaseApp();
+    App couchBaseApp = new App();
     IWriter writer = couchBaseApp.getWriter();
     IReader reader = couchBaseApp.getReader();
 
     @Override
-    public void execute(AdapterProperties readerProperties, AdapterProperties writerProperties) throws InterruptedException {
+    public void execute(AdapterProperties readerProperties, AdapterProperties writerProperties) throws InterruptedException
+    {
         reader.initialize(readerProperties);
         writer.initialize(writerProperties);
         System.out.println("start initialize");
@@ -16,5 +17,6 @@ public class InitialMode implements Mode{
         Thread readerThread =  new Thread(new ReaderThread());
         readerThread.start();
         writerThread.start();
+
     }
 }

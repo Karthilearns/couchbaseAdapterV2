@@ -38,17 +38,17 @@ public class InitialLoadStrategy implements InputStrategy {
         adapterProperties1.addProperties("username","admin");
         adapterProperties1.addProperties("password","Saibaba@09");
         adapterProperties1.addProperties("bucketname","TESTBUCKET4");
-        adapterProperties1.addProperties("databasename","couchbaseIL");
-        adapterProperties1.addProperties("mode","il");
+        adapterProperties1.addProperties("databasename","couchbase");
+        adapterProperties1.addProperties("mode","cdc");
 
         System.out.println("hi");
         AdapterProperties adapterProperties2  =  new AdapterProperties();
         adapterProperties2.addProperties("hosturl","localhost");
         adapterProperties2.addProperties("username","admin");
         adapterProperties2.addProperties("password","Saibaba@09");
-        adapterProperties2.addProperties("bucketname","TESTBUCKET6");
-        adapterProperties2.addProperties("databasename","couchbaseIL");
-        adapterProperties1.addProperties("mode","il");
+        adapterProperties2.addProperties("bucketname","TESTBUCKET1");
+        adapterProperties2.addProperties("databasename","couchbase");
+        adapterProperties2.addProperties("mode","cdc");
 
 
         adapterPropertiesTable.put("sourceAdapterProperties", adapterProperties1);

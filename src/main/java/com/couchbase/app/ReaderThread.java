@@ -1,3 +1,4 @@
+
 package com.couchbase.app;
 
 public class ReaderThread implements Runnable{
@@ -7,7 +8,7 @@ public class ReaderThread implements Runnable{
 
         // thread loop
         while (true) {
-            CouchBaseApp app = new CouchBaseApp();
+            App app = new App();
             IReader reader = app.getReader();
             Event<Object> event = null;
             try {

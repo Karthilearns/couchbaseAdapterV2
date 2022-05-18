@@ -7,7 +7,7 @@ public class ModeStorage {
 
     static {
         modes.put("il",new InitialMode());
-        modes.put("ibr", new CDCMode());
+        modes.put("cdc", new CDCMode());
     }
 
     public static HashMap<String, Mode> getModes() {

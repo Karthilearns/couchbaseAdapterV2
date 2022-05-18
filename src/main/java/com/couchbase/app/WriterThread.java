@@ -7,16 +7,17 @@ public class WriterThread implements Runnable
     public void run() {
         while(true)
         {
-            CouchBaseApp couchBaseApp = new CouchBaseApp();
+            App app = new App();
             IWriter writer =  null;
             Event<Object> eventToWrite =null;
-            if(couchBaseApp.getEvents().size()>0) {
-                writer = couchBaseApp.getWriter();
-                eventToWrite = couchBaseApp.getEvents().remove();
+            if(app.getEvents().size()>0) {
+                writer = app.getWriter();
+                eventToWrite = app.getEvents().remove();
             }
             if(eventToWrite != null){
                 writer.write(eventToWrite);
             }
         }
     }
+
 }

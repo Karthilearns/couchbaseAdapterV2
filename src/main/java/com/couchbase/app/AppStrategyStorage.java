@@ -3,19 +3,19 @@ package com.couchbase.app;
 import java.util.HashMap;
 
 public class AppStrategyStorage {
-    private static HashMap<String,IApp> apps = new HashMap<>();
+    private static HashMap<String,App> apps = new HashMap<>();
 
     static
     {
-        apps.put("couchbasecdc",new CouchBaseApp());
-        apps.put("couchbaseil",new CouchBaseApp());
+        apps.put("couchbaseil",new App());
+        apps.put("couchbasecdc",new App());
     }
 
-    public static void addApp(String dbName , IApp app)
+    public static void addApp(String dbName , App app)
     {
         apps.put(dbName,app);
     }
-    public static IApp getApp(String key)
+    public static App getApp(String key)
     {
         return apps.get(key);
     }

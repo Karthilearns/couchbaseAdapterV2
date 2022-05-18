@@ -17,15 +17,17 @@ public class Driver {
         inputContext.addStrategyImplementation(inputStrategy);
         Hashtable<String,AdapterProperties> adapterProperties = inputContext.invoke();
 
-        String sourceDatabaseName  = adapterProperties.get("sourceAdapterProperties").getProperty("databasename");
-        String targetDatabaseName =  adapterProperties.get("targetAdapterProperties").getProperty("databasename");
+        String sourceDatabaseName  = adapterProperties.get("sourceAdapterProperties").getProperty("databasename")+adapterProperties.get("sourceAdapterProperties").getProperty("mode");
+        System.out.println(sourceDatabaseName);
+        String targetDatabaseName =  adapterProperties.get("targetAdapterProperties").getProperty("databasename")+adapterProperties.get("targetAdapterProperties").getProperty("mode");
+        System.out.println(targetDatabaseName);
         IReader reader = ReaderStorage.getReader(sourceDatabaseName);
         IWriter writer = WriterStorage.getWriter(targetDatabaseName);
 
-        System.out.println(reader instanceof CouchBaseReader);
-        System.out.println(writer instanceof CouchBaseWriter);
+        System.out.println(reader instanceof CouchCDCReader);
+        System.out.println(writer instanceof CouchBaseCDCWriter);
 
-        IApp app = AppStrategyStorage.getApp(sourceDatabaseName.toLowerCase(Locale.ROOT));
+        App app = AppStrategyStorage.getApp(sourceDatabaseName.toLowerCase(Locale.ROOT));
         app.addWriter(writer);
         app.addReader(reader);
         app.start(adapterProperties.get("sourceAdapterProperties"),adapterProperties.get("targetAdapterProperties"));

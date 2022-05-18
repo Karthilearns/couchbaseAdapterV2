@@ -1,9 +1,5 @@
 package com.couchbase.app;
 
-import com.couchbase.client.dcp.Client;
-import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.Collection;
 
 import java.util.ArrayList;
 
@@ -30,13 +26,13 @@ public class CouchCDCReader implements IReader{
     }
 
     @Override
-    public void initialize(AdapterProperties properties) {
+    public void initialize(AdapterProperties properties) throws InterruptedException {
         adapterProperties = properties;
         System.out.println("cdc reader init");
+
   //      cluster = Cluster.connect(properties.getProperty("hosturl"),properties.getProperty("username"),properties.getProperty("password"));
   //      bucket = cluster.bucket(properties.getProperty("bucketname"));
     }
-
     @Override
     public Event<Object> read() throws InterruptedException {
         CouchCDC couchCDC = new CouchCDC();

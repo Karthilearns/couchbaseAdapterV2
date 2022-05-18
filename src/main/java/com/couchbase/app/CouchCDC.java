@@ -19,20 +19,39 @@ public class CouchCDC {
                 .bucket(sourceProperties.getProperty("bucketname"))
                 .credentials(sourceProperties.getProperty("username"),sourceProperties.getProperty("password"))
                 .build();
+        App app = new App();
         client.dataEventHandler(new DataEventHandler() {
+
             @Override
             public void onEvent(ChannelFlowController flowController, ByteBuf event) {
                 if(DcpMutationMessage.is(event))
                 {
+
+
                     String key = DcpMutationMessage.keyString(event);
                     String value = DcpMutationMessage.content(event).toString(StandardCharsets.UTF_8);
                     String metaData = DcpMutationMessage.toString(event);
                     Event<Object> eventToemit = new Event<>(JsonObject.create().put(key,value),metaData);
                     System.out.println(eventToemit);
                     System.out.println(DcpMutationMessage.toString(event));
-                    CouchCDCReader couchBaseReader = new CouchCDCReader();
-                    couchBaseReader.getEvents().add(eventToemit);
-                    System.out.println(couchBaseReader.getEvents().size());
+                    System.out.println("key "+key);
+                    System.out.println("value "+value);
+                    JsonObject jsonObject = JsonObject.fromJson(value);
+                    System.out.println(jsonObject);
+
+                    try {
+                        app.addEvent(new Event<Object>(jsonObject,metaData));
+                        System.out.println(app.getEvents().size());
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+//                    // CouchCDCReader couchBaseReader = new CouchCDCReader();
+//                   //  couchBaseReader.getEvents().add(eventToemit);
+//                  //   System.out.println(couchBaseReader.getEvents().size());
+
+
                 }
                 else if(DcpDeletionMessage.is(event)){
 
